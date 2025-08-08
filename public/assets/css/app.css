@@ -1,0 +1,67 @@
+:root {
+    --app-color: #8e24aa;
+    --app-color-2: #6d1b7b;
+    --app-color-3: #68148c;
+
+    --app-color-light: #f3e5f5;
+    --app-color-light-2: #d0bad5;
+    --app-color-light-3: #ececee;
+}
+
+.btn,
+.form-control {
+    padding: 0.813rem 1.25rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--app-color);
+    border-color: var(--app-color);
+
+    &:hover {
+        background-color: var(--app-color-2);
+        border-color: var(--app-color);
+    }
+
+    &:active {
+        background-color: var(--app-color-3) !important;
+        border-color: var(--app-color-2) !important;
+    }
+}
+
+.btn-outline-primary {
+    background-color: var(--app-color-light);
+    border-color: var(--app-color-light);
+    color: var(--app-color);
+
+    &:hover {
+        background-color: var(--app-color-light-2);
+        border-color: var(--app-color-light);
+        color: var(--app-color);
+    }
+
+    &:active {
+        background-color: var(--app-color-light-3) !important;
+        border-color: var(--app-color-light-2) !important;
+        color: var(--app-color) !important;
+    }
+}
+
+.text-primary {
+    color: var(--app-color) !important;
+}
+
+.link-primary {
+    color: var(--app-color) !important;
+    &:hover {
+        color: var(--app-color-2) !important;
+    }
+}
+
+a {
+    color: var(--app-color);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
