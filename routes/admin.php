@@ -1,72 +1,11 @@
 <?php
 
-use App\Models\Produit;
-use App\Models\Service;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/admin/service", function() {
-    $services = Service::all();
-    return view("admin.service.liste", [
-        'services' => $services,
-    ]);
-})->name("admin.service.liste");
 
-Route::get("/admin/service/ajouter", function() {
-    return view("admin.service.ajouter");
-})->name("admin.service.ajouter");
-
-Route::post("/admin/service/ajouter", function(Request $request) {
-
-    $data = $request->validate([
-        'titre' => ['required','min:3'],
-        'resume' => ['required', 'max:255'],
-        'description' => ['nullable', 'max:1024'],
-        'image' => ['nullable', 'image', 'max:2048']
-    ]);
-
-    $data["slug"] = Str::slug($request->input("titre"));
-
-    if ($request->hasFile('image')) {
-        $data["image"] = $request->file('image')->storePublicly('images-services', 'public');
-    }
-
-    Service::create($data);
-
-    return redirect()->route("admin.service.liste");
-
-})->name("admin.service.ajouter.post");
-
-Route::get('/admin/service/{id}/modifier', function($id) {
-
-    $service = Service::findOrFail($id);
-
-    return view('admin.service.modifier', [
-        'service' => $service
-    ]);
-
-})->name('admin.service.modifier');
-
-Route::post("/admin/service/{id}/modifier", function(Request $request, $id) {
-
-    $service = Service::findOrFail($id);
-
-    $data = $request->validate([
-        'titre' => ['required','min:3'],
-        'resume' => ['required', 'max:255'],
-        'description' => ['nullable', 'max:1024'],
-        'image' => ['nullable', 'image', 'max:2048']
-    ]);
-
-    $data["slug"] = Str::slug($request->input("titre"));
-
-    if ($request->hasFile('image')) {
-        $data["image"] = $request->file('image')->storePublicly('images-services', 'public');
-    }
-
-    $service->update($data);
-
-    return redirect()->route("admin.service.liste");
-
-})->name("admin.service.modifier.post");
+require __DIR__ . '/admin/abonne.php';
+require __DIR__ . '/admin/categorie.php';
+require __DIR__ . '/admin/contact.php';
+require __DIR__ . '/admin/produit.php';
+require __DIR__ . '/admin/service.php';
+require __DIR__ . '/admin/slider.php';
