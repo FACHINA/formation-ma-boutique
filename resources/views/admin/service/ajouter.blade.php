@@ -5,7 +5,7 @@
 @endsection
 
 @section('actions')
-    <a class="btn btn-primary" href="#">Ajouter des services</a>
+    <a class="btn btn-primary" href="{{ route('admin.service.liste') }}">Liste des services</a>
 @endsection
 
 @section('contenu')

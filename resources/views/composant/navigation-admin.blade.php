@@ -8,8 +8,8 @@
          <li>
              <p class="p-3 pb-0 fw-bold">Services</p>
          </li>
-         <li><a class="dropdown-item" href="#">Liste des services</a></li>
-         <li><a class="dropdown-item" href="#">Ajouter un nouveau service</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.service.liste') }}">Liste des services</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.service.ajouter') }}">Ajouter un nouveau service</a></li>
 
          <li>
              <p class="p-3 pb-0 fw-bold">Produits</p>

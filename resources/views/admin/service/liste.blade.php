@@ -5,7 +5,7 @@
 @endsection
 
 @section('actions')
-    <a class="btn btn-primary" href="#">Liste des services</a>
+    <a class="btn btn-primary" href="{{ route('admin.service.ajouter') }}">Ajouter un service</a>
 @endsection
 
 @section('contenu')
@@ -31,7 +31,7 @@
                     <td>{{ $service->titre }}</td>
                     <td>{{ $service->resume }}</td>
                     <td class="text-nowrap">
-                        <a href="#" class="btn btn-sm btn-warning">
+                        <a href="{{ route('admin.service.modifier', ['id' => $service->id]) }}" class="btn btn-sm btn-warning">
                             <i class="bi bi-pencil"></i> Modifier
                         </a>
                     </td>
