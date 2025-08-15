@@ -14,10 +14,10 @@
          <li>
              <p class="p-3 pb-0 fw-bold">Produits</p>
          </li>
-         <li><a class="dropdown-item" href="#">Liste des produits</a></li>
-         <li><a class="dropdown-item" href="#">Ajouter un nouveau produit</a></li>
-         <li><a class="dropdown-item" href="#">Liste des catégorie produits</a></li>
-         <li><a class="dropdown-item" href="#">Ajouter une nouvelle catégorie de produit</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.produit.liste') }}">Liste des produits</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.produit.ajouter') }}">Ajouter un nouveau produit</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.categorie.liste') }}">Liste des catégorie produits</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.categorie.ajouter') }}">Ajouter une nouvelle catégorie de produit</a></li>
 
          <li>
              <p class="p-3 pb-0 fw-bold">Contact</p>

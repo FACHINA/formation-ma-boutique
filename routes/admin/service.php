@@ -25,7 +25,7 @@ Route::post("/admin/service/ajouter", function(Request $request) {
         'image' => ['nullable', 'image', 'max:2048']
     ]);
 
-    $data["slug"] = Str::slug($request->input("titre"));
+    $data["slug"] = Str::slug($data["titre"]);
 
     if ($request->hasFile('image')) {
         $data["image"] = $request->file('image')->storePublicly('images-services', 'public');
@@ -58,7 +58,7 @@ Route::post("/admin/service/{id}/modifier", function(Request $request, $id) {
         'image' => ['nullable', 'image', 'max:2048']
     ]);
 
-    $data["slug"] = Str::slug($request->input("titre"));
+    $data["slug"] = Str::slug($data["titre"]);
 
     if ($request->hasFile('image')) {
         $data["image"] = $request->file('image')->storePublicly('images-services', 'public');
