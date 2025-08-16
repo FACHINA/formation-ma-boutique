@@ -9,7 +9,7 @@
 @endsection
 
 @section('contenu')
-@dump($errors->all())
+{{-- @dump($errors->all()) --}}
     <form enctype="multipart/form-data" class="row g-3" action="{{ route('admin.produit.ajouter.post') }}" method="post">
         @csrf
         <div class="col-lg-4">
@@ -17,7 +17,7 @@
                 <label class="form-label" for="image">Image</label>
                 <input class="form-control" id="image" name="image" type="file" placeholder="Choisissez une image">
                 @error('image')
-                    <span class="text-danger">
+                    c
                         {{ $message }}
                     </span>
                 @enderror
@@ -26,7 +26,7 @@
         <div class="col-lg-8">
             <div>
                 <label class="form-label" for="prix">Prix</label>
-                <input class="form-control" id="prix" name="prix" type="number" step="0.01" required
+                <input class="form-control" id="prix" name="prix" type="number" required
                     placeholder="Entrez le prix du produit" value="{{ old('prix') }}">
                 @error('prix')
                     <span class="text-danger">

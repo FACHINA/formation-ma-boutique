@@ -14,6 +14,7 @@
             <tr>
                 <td style="width: 6rem">Image</td>
                 <td style="width: 20rem">Titre</td>
+                <td style="width: 2rem">Prix</td>
                 <td style="width: 6rem">Catégorie</td>
                 <td>Résumé</td>
                 <td style="width: 2rem"></td>
@@ -24,16 +25,24 @@
                 <tr>
                     <td class="text-center">
                         @if ($produit->image)
-                            <img class="img-thumbnail" src="{{ Storage::url($produit->image) }}" alt="Image {{ $produit->titre }}">
+                            <img class="img-thumbnail" src="{{ Storage::url($produit->image) }}"
+                                alt="Image {{ $produit->titre }}">
                         @else
                             <span class="text-muted small">N/A</span>
                         @endif
                     </td>
                     <td>{{ $produit->titre }}</td>
+                    <td class="text-nowrap">
+                        {{ number_format(
+                            $produit->prix, 0, ',', ' '
+                        ) }}
+                        F CFA
+                    </td>
                     <td>{{ $produit->categorie->nom }}</td>
                     <td>{{ $produit->resume }}</td>
                     <td class="text-nowrap">
-                        <a href="{{ route('admin.produit.modifier', ['id' => $produit->id]) }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('admin.produit.modifier', ['id' => $produit->id]) }}"
+                            class="btn btn-sm btn-warning">
                             <i class="bi bi-pencil"></i> Modifier
                         </a>
                     </td>

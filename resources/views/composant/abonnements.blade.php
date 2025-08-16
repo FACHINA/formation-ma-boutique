@@ -8,14 +8,18 @@
 		explicabo
 		eum provident!
 	</p>
-	<div class="row g-4">
+	<form class="row g-4" action="{{ route('abonnement.post') }}" method="POST">
+        @csrf
 		<div class="col-lg-8">
-            <input class="form-control shadow" type="email" placeholder="benin@example.com" name="" id="">
+            <input class="form-control shadow" autocomplete="email" type="email" placeholder="benin@example.com" value="{{ old('email-abonne') }}" name="email-abonne" id="email-abonne">
+            @error('email-abonne')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
 		</div>
 		<div class="col">
             <button class="btn btn-primary" style="width: 100%;display: block" type="submit">
                 S'abonner
             </button>
         </div>
-	</div>
+	</form>
 </div>

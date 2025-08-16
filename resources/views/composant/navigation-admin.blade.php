@@ -3,7 +3,7 @@
          <i class="bi bi-house"></i> MENU
      </button>
      <ul class="dropdown-menu">
-         <li><a class="dropdown-item" href="#">Tableau de bord</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Tableau de bord</a></li>
          <li><a class="dropdown-item" href="#">Section défilante</a></li>
          <li>
              <p class="p-3 pb-0 fw-bold">Services</p>
@@ -22,7 +22,7 @@
          <li>
              <p class="p-3 pb-0 fw-bold">Contact</p>
          </li>
-         <li><a class="dropdown-item" href="#">Liste des abonnée</a></li>
-         <li><a class="dropdown-item" href="#">Message des internautes</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.abonne.liste') }}">Liste des abonnée</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.contact.liste') }}">Message des internautes</a></li>
      </ul>
  </div>

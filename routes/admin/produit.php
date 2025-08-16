@@ -45,9 +45,11 @@ Route::post("/admin/produit/ajouter", function (Request $request) {
 Route::get('/admin/produit/{id}/modifier', function ($id) {
 
     $produit = Produit::findOrFail($id);
+    $categories = Categorie::all();
 
     return view('admin.produit.modifier', [
-        'produit' => $produit
+        'produit' => $produit,
+        'categories' => $categories
     ]);
 })->name('admin.produit.modifier');
 
