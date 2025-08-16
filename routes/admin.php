@@ -21,17 +21,17 @@ Route::get('/admin', function () {
             'created_at',
             [
                 now()->startOfDay(),
-                now()->endOfDay()
+                now()->endOfDay(),
             ]
         )
         ->count();
-        
+
     $nbMessagesToday = Contact::query()
         ->whereBetween(
             'created_at',
             [
                 now()->startOfDay(),
-                now()->endOfDay()
+                now()->endOfDay(),
             ]
         )
         ->count();
@@ -47,9 +47,9 @@ Route::get('/admin', function () {
     ));
 })->name('admin.dashboard');
 
-require __DIR__ . '/admin/abonne.php';
-require __DIR__ . '/admin/categorie.php';
-require __DIR__ . '/admin/contact.php';
-require __DIR__ . '/admin/produit.php';
-require __DIR__ . '/admin/service.php';
-require __DIR__ . '/admin/slider.php';
+require __DIR__.'/admin/abonne.php';
+require __DIR__.'/admin/categorie.php';
+require __DIR__.'/admin/contact.php';
+require __DIR__.'/admin/produit.php';
+require __DIR__.'/admin/service.php';
+require __DIR__.'/admin/slider.php';

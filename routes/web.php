@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('accueil');
-})->name("accueil");
+})->name('accueil');
 
 Route::get('/contact', function () {
     return view('contact');
-})->name("contact");
+})->name('contact');
 
 Route::post('/contact', function (Request $request) {
 
@@ -28,16 +28,16 @@ Route::post('/contact', function (Request $request) {
     Contact::create($data);
 
     return redirect()->route('contact');
-})->name("contact.post");
+})->name('contact.post');
 
 Route::post('/abonnement', function (Request $request) {
 
     $data = $request->validate([
-        'email-abonne' => ['email', 'unique:abonnes,email']
+        'email-abonne' => ['email', 'unique:abonnes,email'],
     ]);
 
     Abonne::create([
-        'email' => $data['email-abonne']
+        'email' => $data['email-abonne'],
     ]);
 
     return redirect()->back();
@@ -45,22 +45,22 @@ Route::post('/abonnement', function (Request $request) {
 
 Route::get('/mes-services', function () {
     return view('services');
-})->name("services");
+})->name('services');
 
 Route::get('/services/{slug}', function ($slug) {
     $service = Service::where('slug', $slug)->first();
 
     if ($service) {
         return view('services-fiche', [
-            'service' => $service
+            'service' => $service,
         ]);
     }
 
     abort(404);
-})->name("services.fiche");
+})->name('services.fiche');
 
 Route::get('/a-propos', function () {
     return view('a-propos');
-})->name("a-propos");
+})->name('a-propos');
 
-require __DIR__ . '/admin.php';
+require __DIR__.'/admin.php';
