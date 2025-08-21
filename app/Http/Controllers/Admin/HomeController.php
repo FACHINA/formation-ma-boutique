@@ -8,7 +8,6 @@ use App\Models\Categorie;
 use App\Models\Contact;
 use App\Models\Produit;
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

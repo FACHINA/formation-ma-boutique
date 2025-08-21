@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Produit;
-use App\Models\Categorie;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categorie;
+use App\Models\Produit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProduitController extends Controller
 {
@@ -50,7 +50,6 @@ class ProduitController extends Controller
 
         return redirect()->route('admin.produit.liste');
     }
-
 
     public function modifier($id)
     {

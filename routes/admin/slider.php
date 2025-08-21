@@ -1,70 +1,14 @@
 <?php
 
-use App\Models\Slider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/slider', function () {
-    $sliders = Slider::all();
+Route::get('/admin/slider', [SliderController::class, 'liste'])->name('admin.slider.liste');
 
-    return view('admin.slider.liste', [
-        'sliders' => $sliders,
-    ]);
-})->name('admin.slider.liste');
+Route::get('/admin/slider/ajouter', [SliderController::class, 'ajouter'])->name('admin.slider.ajouter');
 
-Route::get('/admin/slider/ajouter', function () {
-    return view('admin.slider.ajouter');
-})->name('admin.slider.ajouter');
+Route::post('/admin/slider/ajouter', [SliderController::class, 'ajouter_post'])->name('admin.slider.ajouter.post');
 
-Route::post('/admin/slider/ajouter', function (Request $request) {
+Route::get('/admin/slider/{id}/modifier', [SliderController::class, 'modifier'])->name('admin.slider.modifier');
 
-    $data = $request->validate([
-        'titre' => ['required', 'min:3'],
-        'description' => ['nullable', 'max:1024'],
-        'image' => ['nullable', 'image', 'max:2048'],
-    ]);
-
-    $data['slug'] = Str::slug($data['titre']);
-
-    if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->storePublicly('images-sliders', 'public');
-    }
-
-    Slider::create($data);
-
-    return redirect()->route('admin.slider.liste');
-
-})->name('admin.slider.ajouter.post');
-
-Route::get('/admin/slider/{id}/modifier', function ($id) {
-
-    $slider = Slider::findOrFail($id);
-
-    return view('admin.slider.modifier', [
-        'slider' => $slider,
-    ]);
-
-})->name('admin.slider.modifier');
-
-Route::post('/admin/slider/{id}/modifier', function (Request $request, $id) {
-
-    $slider = Slider::findOrFail($id);
-
-    $data = $request->validate([
-        'titre' => ['required', 'min:3'],
-        'description' => ['nullable', 'max:1024'],
-        'image' => ['nullable', 'image', 'max:2048'],
-    ]);
-
-    $data['slug'] = Str::slug($data['titre']);
-
-    if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->storePublicly('images-sliders', 'public');
-    }
-
-    $slider->update($data);
-
-    return redirect()->route('admin.slider.liste');
-
-})->name('admin.slider.modifier.post');
+Route::post('/admin/slider/{id}/modifier', [SliderController::class, 'modifier_post'])->name('admin.slider.modifier.post');

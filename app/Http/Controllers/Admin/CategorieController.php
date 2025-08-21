@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Categorie;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categorie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategorieController extends Controller
 {

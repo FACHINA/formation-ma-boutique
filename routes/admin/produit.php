@@ -1,11 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProduitController;
-use App\Models\Categorie;
-use App\Models\Produit;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 Route::get('/admin/produit', [ProduitController::class, 'liste'])->name('admin.produit.liste');
 Route::get('/admin/produit/ajouter', [ProduitController::class, 'ajouter'])->name('admin.produit.ajouter');

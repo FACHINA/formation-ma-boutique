@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Slider;
 use App\Models\Service;
-use Illuminate\Http\Request;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -12,6 +11,7 @@ class HomeController extends Controller
     {
         $sliders = Slider::all();
         $services = Service::latest()->limit(6)->get();
+
         return view('accueil', compact('sliders', 'services'));
     }
 }

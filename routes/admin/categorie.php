@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategorieController;
-use App\Models\Categorie;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 Route::get('/admin/categorie', [CategorieController::class, 'liste'])->name('admin.categorie.liste');
 Route::get('/admin/categorie/ajouter', [CategorieController::class, 'ajouter'])->name('admin.categorie.ajouter');
