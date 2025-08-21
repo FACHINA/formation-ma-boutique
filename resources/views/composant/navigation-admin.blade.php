@@ -4,7 +4,7 @@
      </button>
      <ul class="dropdown-menu">
          <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Tableau de bord</a></li>
-         <li><a class="dropdown-item" href="#">Section défilante</a></li>
+         <li><a class="dropdown-item" href="{{ route('admin.slider.liste') }}">Section défilante</a></li>
          <li>
              <p class="p-3 pb-0 fw-bold">Services</p>
          </li>

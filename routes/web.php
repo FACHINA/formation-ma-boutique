@@ -1,66 +1,27 @@
 <?php
 
+use App\Http\Controllers\AbonnementController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Models\Abonne;
+use App\Models\Slider;
 use App\Models\Contact;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
 
-Route::get('/', function () {
-    return view('accueil');
-})->name('accueil');
+Route::get('/', [HomeController::class, 'acceuil'])->name('accueil');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'contact_post'])->name('contact.post');
 
-Route::post('/contact', function (Request $request) {
+Route::post('/abonnement', [AbonnementController::class, 'abonnement_post'])->name('abonnement.post');
 
-    $data = $request->validate([
-        'nom' => 'required|string|max:255',
-        'prenom' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'telephone' => 'nullable|string|max:20',
-        'sujet' => 'required|string|max:255',
-        'message' => 'required|string',
-    ]);
+Route::get('/mes-services', [ServiceController::class, 'liste'])->name('services');
+Route::get('/services/{slug}', [ServiceController::class, 'fiche'])->name('services.fiche');
 
-    Contact::create($data);
+Route::get('/a-propos', [AboutController::class, 'about'])->name('a-propos');
 
-    return redirect()->route('contact');
-})->name('contact.post');
-
-Route::post('/abonnement', function (Request $request) {
-
-    $data = $request->validate([
-        'email-abonne' => ['email', 'unique:abonnes,email'],
-    ]);
-
-    Abonne::create([
-        'email' => $data['email-abonne'],
-    ]);
-
-    return redirect()->back();
-})->name('abonnement.post');
-
-Route::get('/mes-services', function () {
-    return view('services');
-})->name('services');
-
-Route::get('/services/{slug}', function ($slug) {
-    $service = Service::where('slug', $slug)->first();
-
-    if ($service) {
-        return view('services-fiche', [
-            'service' => $service,
-        ]);
-    }
-
-    abort(404);
-})->name('services.fiche');
-
-Route::get('/a-propos', function () {
-    return view('a-propos');
-})->name('a-propos');
-
-require __DIR__.'/admin.php';
+require __DIR__ . '/admin.php';

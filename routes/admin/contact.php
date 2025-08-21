@@ -1,12 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/contact', function () {
-    $contacts = Contact::all();
-
-    return view('admin.contact.liste', [
-        'contacts' => $contacts,
-    ]);
-})->name('admin.contact.liste');
+Route::get('/admin/contact', [ContactController::class, 'liste'])->name('admin.contact.liste');

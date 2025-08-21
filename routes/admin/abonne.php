@@ -1,12 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AbonneController;
 use App\Models\Abonne;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/abonne', function () {
-    $abonnes = Abonne::all();
-
-    return view('admin.abonne.liste', [
-        'abonnes' => $abonnes,
-    ]);
-})->name('admin.abonne.liste');
+Route::get('/admin/abonne', [AbonneController::class, 'liste'])->name('admin.abonne.liste');
