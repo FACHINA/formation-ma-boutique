@@ -12,9 +12,9 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <td style="width: 20rem">Nom</td>
-                <td>Description</td>
-                <td style="width: 2rem"></td>
+                <th style="width: 20rem">Nom</th>
+                <th>Description</th>
+                <th style="width: 2rem"></th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,12 @@
                         <a href="{{ route('admin.categorie.modifier', ['id' => $categorie->id]) }}" class="btn btn-sm btn-warning">
                             <i class="bi bi-pencil"></i> Modifier
                         </a>
+                        <form onsubmit="return confirm('Souhaitez vous supprimer cet article ?')" class="d-inline" action="{{ route('admin.categorie.supprimer', ['id' => $categorie->id]) }}" method="post">
+                            @csrf
+                            <button class="btn btn-danger btn-sm" type="submit">
+                                 <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

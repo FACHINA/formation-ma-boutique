@@ -35,7 +35,8 @@ class CategorieController extends Controller
 
         Categorie::create($data);
 
-        return redirect()->route('admin.categorie.liste');
+        return redirect()->route('admin.categorie.liste')
+            ->with('success', "La catégorie à bien été ajouter");
     }
 
     public function modifier($id)
@@ -62,6 +63,23 @@ class CategorieController extends Controller
 
         $categorie->update($data);
 
-        return redirect()->route('admin.categorie.liste');
+        return redirect()->route('admin.categorie.liste')
+            ->with('success', "La catégorie <strong>{$categorie->nom}</strong> à bien été modifier");
+    }
+
+    public function supprimer($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+
+        if ($categorie->produits->count() > 0) {
+            return redirect()
+                ->route('admin.categorie.liste')
+                ->with('warning', "Impossible de supprimer, la catégorie <strong>{$categorie->nom}</strong> est utiisée.");
+        } else {
+            $categorie->delete();
+            return redirect()
+                ->route('admin.categorie.liste')
+                ->with('success', "La catégorie à bien été supprimer");
+        }
     }
 }

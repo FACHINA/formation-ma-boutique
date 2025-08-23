@@ -34,6 +34,7 @@
         </div>
     </div>
     <div class="container" style="min-height: 100vh">
+        @include('composant.alert')
         <div class="card bg-light mx-auto mt-5 shadow">
             <div class="card-body">
                 @yield('contenu')
