@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class ServiceController extends Controller
 {
-    public function liste()
+    public function liste(Request $request)
     {
-        return view('services');
+        $services = Service::query()
+            ->when(
+                $request->query('recherche'),
+                function (Builder $query, $recherche) {
+                    $query->where('titre', 'LIKE', "%{$recherche}%");
+                }
+            )
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+            
+        return view('services', compact('services'));
     }
 
     public function fiche($slug)

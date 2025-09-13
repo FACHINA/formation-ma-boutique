@@ -48,7 +48,8 @@ class ProduitController extends Controller
 
         Produit::create($data);
 
-        return redirect()->route('admin.produit.liste');
+        return redirect()->route('admin.produit.liste')
+            ->with('success', "Le produit a bien été ajouté");
     }
 
     public function modifier($id)
@@ -85,6 +86,7 @@ class ProduitController extends Controller
 
         $produit->update($data);
 
-        return redirect()->route('admin.produit.liste');
+        return redirect()->route('admin.produit.liste')
+            ->with('success', "Le produit <strong>{$produit->titre}</strong> a bien été modifié");
     }
 }

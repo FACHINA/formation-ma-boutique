@@ -39,7 +39,8 @@ class SliderController extends Controller
 
         Slider::create($data);
 
-        return redirect()->route('admin.slider.liste');
+        return redirect()->route('admin.slider.liste')
+            ->with('success', "Le slider a bien été ajouté");
     }
 
     public function modifier($id)
@@ -54,6 +55,7 @@ class SliderController extends Controller
     public function modifier_post(Request $request, $id)
     {
         $slider = Slider::findOrFail($id);
+
         $data = $request->validate([
             'titre' => ['required', 'min:3'],
             'description' => ['nullable', 'max:1024'],
@@ -68,6 +70,7 @@ class SliderController extends Controller
 
         $slider->update($data);
 
-        return redirect()->route('admin.slider.liste');
+        return redirect()->route('admin.slider.liste')
+            ->with('success', "Le slider <strong>{$slider->titre}</strong> a bien été modifié");
     }
 }

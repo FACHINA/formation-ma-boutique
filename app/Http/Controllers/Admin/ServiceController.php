@@ -11,7 +11,7 @@ class ServiceController extends Controller
 {
     public function liste()
     {
-        $services = Service::all();
+        $services = Service::latest()->paginate(5);
 
         return view('admin.service.liste', [
             'services' => $services,
@@ -40,7 +40,8 @@ class ServiceController extends Controller
 
         Service::create($data);
 
-        return redirect()->route('admin.service.liste');
+        return redirect()->route('admin.service.liste')
+            ->with('success', "Le service a bien été ajouté");
     }
 
     public function modifier($id)
@@ -70,6 +71,7 @@ class ServiceController extends Controller
 
         $service->update($data);
 
-        return redirect()->route('admin.service.liste');
+        return redirect()->route('admin.service.liste')
+            ->with('success', "Le service <strong>{$service->titre}</strong> a bien été modifié");
     }
 }

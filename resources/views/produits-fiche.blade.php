@@ -1,22 +1,22 @@
 @extends('layout.site')
 
 @section('site-title')
-    {{ $service->titre }}
+    {{ $produit->titre }}
 @endsection
 
 @section('contenu')
     <div class="text-center mb-5">
-        @if ($service->image)
-            <img class="img-fluid" src="{{ Storage::url($service->image) }}" alt="Image {{ $service->titre }}">
+        @if ($produit->image)
+            <img class="img-fluid" src="{{ Storage::url($produit->image) }}" alt="Image {{ $produit->titre }}">
         @else
             <span class="text-muted small">N/A</span>
         @endif
     </div>
     <hr>
     <p>
-        {{ $service->resume }}
+        {{ $produit->resume }}
     </p>
     <div class="mb-5">
-        {{ $service->description }}
+        {{ $produit->description }}
     </div>
 @endsection

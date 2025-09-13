@@ -15,4 +15,12 @@ class ContactController extends Controller
             'contacts' => $contacts,
         ]);
     }
+
+    public function supprimer($id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        return redirect()->route('admin.contact.liste')
+            ->with('success', "Le message a bien été supprimé");
+    }
 }

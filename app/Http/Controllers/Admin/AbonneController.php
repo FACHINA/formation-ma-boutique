@@ -15,4 +15,12 @@ class AbonneController extends Controller
             'abonnes' => $abonnes,
         ]);
     }
+
+    public function supprimer($id)
+    {
+        $abonne = Abonne::findOrFail($id);
+        $abonne->delete();
+        return redirect()->route('admin.abonne.liste')
+            ->with('success', "L'abonné a bien été supprimé");
+    }
 }
