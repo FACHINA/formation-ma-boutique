@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailMessage;
 use App\Mail\LargeDiffusion;
 use App\Models\Abonne;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 
 class AbonneController extends Controller
@@ -38,7 +40,13 @@ class AbonneController extends Controller
         $sujet = $data["sujet"];
         $message = $data["message"];
 
-        Mail::send(new LargeDiffusion($emails->toArray(), $sujet, $message));
+        $mailable = new Mailable();
+        $mailable->subject($sujet)
+            ->from("contact@maboutique.bj", "Ma boutique")
+            ->to($emails->toArray())
+            ->html($message);
+
+        Mail::send($mailable);
 
         return redirect()->back()->with('La diffusion à été éffectué');
     }
