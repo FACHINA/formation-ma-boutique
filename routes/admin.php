@@ -14,6 +14,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('', [HomeController::class, 'admin'])->name('admin.dashboard');
 
     Route::get('abonne', [AbonneController::class, 'liste'])->name('admin.abonne.liste');
+    Route::post('abonne/envoyez-message', [AbonneController::class, 'sendMessageToAbonne'])->name('admin.abonne.send-message');
 
     Route::get('categorie', [CategorieController::class, 'liste'])->name('admin.categorie.liste');
     Route::get('categorie/ajouter', [CategorieController::class, 'ajouter'])->name('admin.categorie.ajouter');
