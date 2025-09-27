@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\ProduitController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CategorieController;
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('auth')->group(function () {
 
     Route::get('', [HomeController::class, 'admin'])->name('admin.dashboard');
 
